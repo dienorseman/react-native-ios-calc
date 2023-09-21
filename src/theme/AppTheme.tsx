@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   background: {
-    backgroundColor: '#1c1c1c',
+    backgroundColor: '#000',
     flex: 1,
   },
   currentResult: {
@@ -69,6 +69,12 @@ export const styles = StyleSheet.create({
 
   opperandButtonNumber: {
     color: 'white',
+    fontSize: 30,
+    textAlign: 'center',
+  },
+
+  specialButtonNumber: {
+    color: 'black',
     fontSize: 30,
     textAlign: 'center',
   },

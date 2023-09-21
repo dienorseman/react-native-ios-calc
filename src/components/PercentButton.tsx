@@ -2,19 +2,19 @@ import React from 'react';
 import {TouchableHighlight, View, Text} from 'react-native';
 import {styles} from '../theme/AppTheme';
 import {AppDispatch} from '../store/store';
-import {clear} from '../store/calculator/calcSlice';
+import {percent} from '../store/calculator/calcSlice';
 
-export const ClearButton = () => {
+export const PercentButton = () => {
   const dispatch = AppDispatch();
 
   return (
     <TouchableHighlight
       style={styles.clearButton}
       onPress={() => {
-        dispatch(clear());
+        dispatch(percent());
       }}>
       <View>
-        <Text style={styles.specialButtonNumber}>AC</Text>
+        <Text style={styles.specialButtonNumber}>%</Text>
       </View>
     </TouchableHighlight>
   );

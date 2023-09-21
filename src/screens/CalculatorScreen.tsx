@@ -2,20 +2,29 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {useAppSelector} from '../store/store';
 import {styles} from '../theme/AppTheme';
-import {DigitNumberButton} from '../components/DigitNumberButton';
-import {ClearButton} from '../components/ClearButton';
-import {OperationButton} from '../components/OperationButton';
+import {
+  ClearButton,
+  DigitNumberButton,
+  EqualsButton,
+  OperationButton,
+  PercentButton,
+  PlusMinusButton,
+} from '../components';
 
 export const CalculatorScreen = () => {
-  const {currentValue, operator} = useAppSelector(state => state.calc);
+  const {displayValue, operator, storedValue, firstNumber, secondNumber} =
+    useAppSelector(state => state.calc);
+
   return (
     <>
-      <Text style={styles.currentOpperation}>{operator}</Text>
-      <Text style={styles.currentResult}>{currentValue}</Text>
+      <Text style={styles.currentOpperation}>
+        {firstNumber} {operator} {secondNumber} = {storedValue}
+      </Text>
+      <Text style={styles.currentResult}>{displayValue}</Text>
       <View style={styles.row}>
         <ClearButton />
-        <ClearButton />
-        <ClearButton />
+        <PlusMinusButton />
+        <PercentButton />
         <OperationButton symbol="/" />
       </View>
       <View style={styles.row}>
@@ -39,7 +48,7 @@ export const CalculatorScreen = () => {
       <View style={styles.row}>
         <DigitNumberButton zero number={0} />
         <DigitNumberButton number="." />
-        <OperationButton symbol="=" />
+        <EqualsButton />
       </View>
     </>
   );

@@ -2,19 +2,18 @@ import React from 'react';
 import {TouchableHighlight, View, Text} from 'react-native';
 import {styles} from '../theme/AppTheme';
 import {AppDispatch} from '../store/store';
-import {clear} from '../store/calculator/calcSlice';
+import {equals} from '../store/calculator/calcSlice';
 
-export const ClearButton = () => {
+export const EqualsButton = () => {
   const dispatch = AppDispatch();
-
   return (
     <TouchableHighlight
-      style={styles.clearButton}
+      style={styles.opperationButton}
       onPress={() => {
-        dispatch(clear());
+        dispatch(equals());
       }}>
       <View>
-        <Text style={styles.specialButtonNumber}>AC</Text>
+        <Text style={styles.opperandButtonNumber}>=</Text>
       </View>
     </TouchableHighlight>
   );
