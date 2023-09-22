@@ -17,9 +17,9 @@ export const CalculatorScreen = () => {
 
   return (
     <>
-      <Text style={styles.currentOpperation}>
+      {/* <Text style={styles.currentOpperation}>
         {firstNumber} {operator} {secondNumber} = {storedValue}
-      </Text>
+      </Text> */}
       <Text style={styles.currentResult}>{displayValue}</Text>
       <View style={styles.row}>
         <ClearButton />

@@ -25,7 +25,9 @@ export const calcSlice = createSlice({
     clear: () => initialState,
     addDigit: (state, action: PayloadAction<string>) => {
       if (
-        (action.payload === '.' && state.displayValue.includes('.')) ||
+        (action.payload === '.' &&
+          state.displayValue.includes('.') &&
+          !state.waitingForNewValue) ||
         state.displayValue.length > 9
       ) {
         return;
@@ -33,6 +35,11 @@ export const calcSlice = createSlice({
         state.displayValue = '0';
       } else {
         if (state.waitingForNewValue) {
+          if (action.payload === '.') {
+            state.displayValue = '0.';
+            state.waitingForNewValue = false;
+            return;
+          }
           state.displayValue = action.payload;
           state.waitingForNewValue = false;
           return;
@@ -47,7 +54,11 @@ export const calcSlice = createSlice({
       }
     },
     setOperator: (state, action: PayloadAction<string>) => {
-      if (state.operator && state.storedValue) {
+      if (
+        state.operator &&
+        state.storedValue !== null &&
+        !state.waitingForNewValue
+      ) {
         if (!state.secondNumber) {
           state.secondNumber = Number(state.displayValue);
         }
@@ -69,13 +80,13 @@ export const calcSlice = createSlice({
         }
         state.displayValue = String(state.storedValue);
         state.firstNumber = state.storedValue;
-        state.waitingForNewValue = true;
+        state.waitingForNewValue = false;
         state.storedValue = null;
       } else {
         state.waitingForNewValue = true;
         state.firstNumber = Number(state.displayValue);
         state.operator = action.payload;
-        state.storedValue = state.firstNumber;
+        state.secondNumber = null;
       }
     },
     plusMinus: state => {
@@ -105,6 +116,7 @@ export const calcSlice = createSlice({
       state.waitingForNewValue = false;
       state.displayValue = String(state.storedValue);
       state.firstNumber = state.storedValue;
+      state.storedValue = null;
     },
   },
 });

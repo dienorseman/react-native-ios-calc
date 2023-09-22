@@ -15,6 +15,10 @@ export const styles = StyleSheet.create({
     marginHorizontal: 32,
     marginBottom: 16,
     marginTop: 24,
+    flex: 1,
+    flexWrap: 'wrap',
+    // backgroundColor: 'red',
+    textAlignVertical: 'bottom',
   },
   row: {
     flexDirection: 'row',
