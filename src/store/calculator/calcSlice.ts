@@ -80,8 +80,9 @@ export const calcSlice = createSlice({
         }
         state.displayValue = String(state.storedValue);
         state.firstNumber = state.storedValue;
-        state.waitingForNewValue = false;
+        state.waitingForNewValue = true;
         state.storedValue = null;
+        state.operator = action.payload;
       } else {
         state.waitingForNewValue = true;
         state.firstNumber = Number(state.displayValue);

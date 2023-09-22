@@ -12,8 +12,8 @@ import {
 } from '../components';
 
 export const CalculatorScreen = () => {
-  const {displayValue, operator, storedValue, firstNumber, secondNumber} =
-    useAppSelector(state => state.calc);
+  // const {displayValue, operator, storedValue, firstNumber, secondNumber} =
+  const {displayValue} = useAppSelector(state => state.calc);
 
   return (
     <>
